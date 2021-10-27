@@ -1,0 +1,18 @@
+{
+  "name": "@maleeshagimshan98/vuex-pagination-wrapper",
+  "version": "1.0.0",
+  "description": "Wrapper object to be used for managing paged data easily in Vue.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maleesha Gimshan (https://github.com/maleeshagimshan98)",
+  "license": "MIT",
+  "keywords": [
+    "vuex",
+    "vue",
+    "page",
+    "pagination",
+    "vue store"
+  ]
+}
