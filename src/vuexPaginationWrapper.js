@@ -32,112 +32,90 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    */
   initialisePage(page = null)
   {
-    this.page = page ? new Page(page) : undefined;
+    this.page = new Page(page)
   }  
 
   /**
    * get pagination data object
    * returns null if page is not set/ not available
    *
-   * @returns {object|null}
+   * @returns {object}
    */
   getPageDataObject()
   {
-    return this.page ? this.page.getPage() : null;
+    return this.page.getPage();
   }
 
   /**
    * get current page number
    * returns null if page is not set
    * 
-   * @returns {object|null}
+   * @returns {String | Number}
    */
   getCurrentPageNo ()
   {
-    return this.page ? this.page.getPageNo() : null;
+    return this.page.getPageNo();
   }
 
   /**
    * update pagination object's page number
-   * returns null if page is not set
    *
    * @param {String|Number} pageNo - page number
-   * @returns {object|null} page data object
+   * @returns void
    */
-  updatePageNo(pageNo = null)
-  {
-    if (!pageNo || !this.page) {
-      return null;
-    }
+  updatePageNo(pageNo)
+  {    
     this.page.setPageNo(pageNo);
-    return this.page.getPage();
   }
 
   /**
-   * update pagination object
+   * update the whole pagination object
    * creates a new instance of Page for this.page property
    * is not set
    *
    * @param {object} page pagination object
    * @return void
    */
-  setPage(page)
+  _setPage(page)
   {
-      if (!this.page){
-          this.initialisePage(page);
-      }
-      this.page.setPage(page);
+    this.page.setPage(page);
   }
 
   /**
    * set data for the current page
    *
    * @param {object} data data
-   * @param {String|Number} page page number
+   * @param {object} page page number
    * @returns self
    */
   setData(data, page)
   {
-    this.setPage(page);
+    this._setPage(page);
     this.data[this.page.getPageNo()] = data;
     return this;
   }  
 
   /**
-   * get the given page of data
-   * 
-   * @param {String} pageNo
-   * @returns {object|null} 
-   */
-  getPagedData (pageNo)
-  {
-    return this.data[pageNo] ?? null;
-  }
-
-  /**
    * checks if data for a particular page exists.
-   * if exists, return those data. 
-   * In case ````page = null```` checks for the data in the first page
-   * and if data exists, returns the data. Otherwise return null
+   * if exists, return true 
    * 
    * @param {String} page - page number
-   * @returns {mixed}
+   * @returns {Boolean}
    */
   checkDataExists (page = null)
-  {
-      /**
-     * if no page data given, check  data available for
-     * the first page, returns null if data not available
-     */
-    if (!page) {
-      return this.getData(1);
-    }
+  {      
     /**
      * if page data given, check data available for the given page
      */
-    if (page && this.getData(page)) {
-      this.updatePageNo(page);
-      return this.getData(page);
+    if (page) {
+      try {
+        this.getData(page);
+        return true;
+      }
+      catch (e) {
+        console.error(e)
+        return false;
+      }      
     }
   }
 
@@ -151,7 +129,10 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    */
   getData(pageNo)
   {
-      return this.page ? this.getPagedData(pageNo) : null;
+    if (pageNo > this.page.getPagesCount()) {
+      throw new Error(`Invalid page number, Page number must be equal or lower than ${this.page.getPagesCount()}`)
+    }
+      return this.data[pageNo];
   }
 }
 

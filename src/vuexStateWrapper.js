@@ -14,19 +14,9 @@
     * @returns self
     */
    constructor(data = null) {
-     this.initialiseData(data);
+     this.data = data ?? {};
      return this;
-   }   
- 
-   /**
-    * initialise data object
-    * @param {object|null} data
-    * @returns void
-    */
-   initialiseData(data = null)
-   {
-     this.data = data ? data : {};
-   }   
+   }
  
    /**
     * set data
@@ -36,7 +26,7 @@
     */
    setData(data)
    {     
-     this.data = data ?? {};
+     this.data = data;
      return this;
    }   
  

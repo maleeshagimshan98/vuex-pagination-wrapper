@@ -14,11 +14,10 @@
      * @returns self
      */
     constructor (page = null)
-    {
-        this.page = {};           
-        this.page.result = page.result ?? null;   
-        this.page.pageNo = page.pageNo ?? null;   
-        this.page.pages = page.pages ?? null;        
+    {                   
+        this.result = page.result ?? null;   
+        this.pageNo = page.pageNo ?? 1;   
+        this.pages = page.pages ?? 1;        
     }
 
     /**
@@ -29,9 +28,9 @@
      */
     setPage(page)
     { 
-        this.page.result = page.result;   
-        this.page.pageNo = page.pageNo;   
-        this.page.pages = page.pages;     
+        this.result = page.result;   
+        this.pageNo = page.pageNo;   
+        this.pages = page.pages;     
         return this;                            
     }    
 
@@ -42,8 +41,22 @@
      */
     getPage()
     {
-        return this.page;
+        return {
+            result : this.result,
+            pageNo : this.pageNo,
+            pages : this.pages
+        };
     }
+
+    /**
+     * get number of results
+     * 
+     * @returns String|Number
+     */
+     getResultsCount ()
+     {
+         return this.result;
+     }
 
     /**
      * get page number of the page object
@@ -52,9 +65,9 @@
      */
     getPageNo ()
     {
-        return this.page.pageNo;
-    }
-
+        return this.pageNo;
+    }    
+    
     /**
      * set page number of the page object
      * 
@@ -64,13 +77,13 @@
      */
     setPageNo (pageNo)
     {
-        if(this.page.pages && pageNo >this.page.pages) {
+        if(this.pages && pageNo >this.pages) {
             throw new Error("page number must be equal or below the pages count");
         }
-        if(this.page.pages && pageNo <= 0) {
+        if(this.pages && pageNo <= 0) {
             throw new Error("page number must be equal or above 1");
         }
-        this.page.pageNo = pageNo;
+        this.pageNo = pageNo;
         return this;
     }
 
@@ -81,7 +94,7 @@
      */
     getPagesCount ()
     {
-        return this.page.pages;
+        return this.pages;
     }
 
     /**
@@ -91,11 +104,9 @@
      */
     reset ()
     {
-        this.page = {                
-            result : 0,
-            pageNo : 0,
-            pages : 0,
-        };           
+        this.result = null;
+        this.pageNo = 1;
+        this.pages = null;
     }
 }
 
