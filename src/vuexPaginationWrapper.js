@@ -20,7 +20,7 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    */
   constructor(data = null, page = null) {
     super(data);
-    this.initialisePage(page);
+    this._initialisePage(page);
     return this;
   }
 
@@ -30,7 +30,7 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    * @param {object} page pagination object
    * @returns void
    */
-  initialisePage(page = null)
+  _initialisePage(page = null)
   {
     this.page = new Page(page)
   }  
@@ -99,7 +99,7 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    * checks if data for a particular page exists.
    * if exists, return true 
    * 
-   * @param {String} page - page number
+   * @param {String|Number} page - page number
    * @returns {Boolean}
    */
   checkDataExists (page = null)
@@ -126,6 +126,7 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    *
    * @pram String|Number pageNo - page number
    * @returns {object|null}
+   * @throws Error
    */
   getData(pageNo)
   {

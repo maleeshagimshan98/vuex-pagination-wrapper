@@ -1,10 +1,11 @@
 # vuex-pagination-wrapper
-Wrapper object to be used for managing paged data easily in Vue.js
+Wrapper object for managing paged data easily in Vuex Store
 
 ## About
 Storing and retriving lot of paged data may be a daunting task for many.
-Especially, in case you need to display different kinds of data in your appliaction and update the pages, page numbers efficiently.
-This package helps you to store and retrieve paged data in the vue store by managing data and pagination data for you.
+Especially in the case you have different kinds of paged data in your appliaction, update the pages, page numbers efficiently.
+
+This package helps you to store and retrieve paged data in a vuex store by providing an easy to use api for you.
 
 ## Installation
 
@@ -29,8 +30,16 @@ module.exports = {
   
   mutations : {
     setFoo (state,data) {
-      state.foo.setData(data,page);        
+      state.foo.setData(data.foo, data.page);        
     },
+  },
+
+  actions : {
+    async getFoo ({state,commit,dispatch}) {
+      let foo_data = await some_api_call()
+      commit('setFoo',foo_data)
+
+    }
   },
 }
 ````
@@ -40,47 +49,63 @@ module.exports = {
 
 - **`setData(data,page)`**
 
+Use this method to store data obtained from server into vuex store. This method replace the entire page object with the page parameter
+
+Pass the pagination object with updated page details (no of results, page number and pages count)
+
   - data - any object/ Array of objects with paginated data.
-  - page - pagination data object in the following format.
+  - page - pagination data object must include the following properties.
   - *returns* - void
 
 
 ````
 //... Pagination object
 {
-  result : 10,
-  pageNo : 1,
-  pages : 2  
+  result : 10, (number of results)
+  pageNo : 1, (currentP page number)
+  pages : 2  (number of pages)
 }
 ````
 
 - **getData(pageNo)**
 
-  - pageNo - page number of the data you want to get
+Get data of particular page number.
+
+  - pageNo - Number -  page number of the data you want to get
   - *returns* - data object/array of objects you stored for the particular page number
 
-- **setPage(page)**
+- **checkDataExists(pageNo = null)**
 
-  - page - pagination object in above mentioned format
-  - *returns* - void
+Check if data exists for a given page number
+
+  - pageNo - Number - check if there is data stored for the given page number
+  - *returns* - Boolean if data exists, return true
+
+- **updatePageNo(pageNo)**
+
+Update the current page number - use this when user surf through pages
+
+- pageNo - Number - which you want to be the current page number
+- *returns* - void
 
 - **getCurrentPageNo()**
 
-  - *returns* - current page number or *null if page is not set*
-
-- **updatePageNo(pageNo = null)**
-
-  - pageNo - page number, which you want to be the current page number
-  - *returns* - pagination data object with updated data or *null if page is not set*
+  - *returns* - String|Number current page number
 
 - **getPageDataObject()**
 
-  - *returns* - pagination data object or *null if page is not set*
+  - *returns* - pagination data in a plain javascript object
 
-- **checkDataExists(pageNo = 1)**
+  ````
+  //... plain object with following properties
+  {
+    result : 10, (number of results)
+    pageNo : 1, (currentP page number)
+    pages : 2  (number of pages)
+  }
 
-  - pageNo - check if there is data stored for the given page number (*defaults to 1*)
-  - *returns* - if exists, return data for the given page number or null
+  ````
+
 
 
 

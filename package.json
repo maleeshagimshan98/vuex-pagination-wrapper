@@ -1,8 +1,8 @@
 {
   "name": "@maleeshagimshan98/vuex-pagination-wrapper",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Wrapper object to be used for managing paged data easily in Vue.js",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,7 @@
     "vue",
     "page",
     "pagination",
-    "vue store"
+    "vue store",
+    "pinia"
   ]
 }
