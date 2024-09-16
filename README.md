@@ -61,8 +61,8 @@ Pass the pagination object with updated page details (no of results, page number
 ````
 //... Pagination object
 {
-  result : 10, (number of results)
-  pageNo : 1, (currentP page number)
+  total : 10, (total number of results)
+  current : 1, (current page number)
   pages : 2  (number of pages)
 }
 ````
@@ -74,11 +74,11 @@ Get data of particular page number.
   - pageNo - Number -  page number of the data you want to get
   - *returns* - data object/array of objects you stored for the particular page number
 
-- **checkDataExists(pageNo = null)**
+- **checkDataExists(page = null)**
 
 Check if data exists for a given page number
 
-  - pageNo - Number - check if there is data stored for the given page number
+  - page - Number - check if there is data stored for the given page number
   - *returns* - Boolean if data exists, return true
 
 - **updatePageNo(pageNo)**
@@ -99,8 +99,8 @@ Update the current page number - use this when user surf through pages
   ````
   //... plain object with following properties
   {
-    result : 10, (number of results)
-    pageNo : 1, (currentP page number)
+    total : 10, (total number of results)
+    current : 1, (current page number)
     pages : 2  (number of pages)
   }
 
