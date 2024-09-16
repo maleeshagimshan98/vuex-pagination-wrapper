@@ -18,7 +18,7 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    * @param {object} page pagination data
    * @returns self
    */
-  constructor(data = null, page = null) {
+  constructor(data = null, page = {total : 1, pages : 1, current : 1}) {
     super(data);
     this._initialisePage(page);
     return this;
@@ -28,16 +28,16 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    * initialise page object
    *
    * @param {object} page pagination object
-   * @returns void
+   * @returns {void}
    */
-  _initialisePage(page = null)
+  _initialisePage(page)
   {
     this.page = new Page(page)
-  }  
+  }
 
   /**
    * get pagination data object
-   * returns null if page is not set/ not available
+   * returns page with default values is not set/ not available
    *
    * @returns {object}
    */
@@ -50,31 +50,29 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    * get current page number
    * returns null if page is not set
    * 
-   * @returns {String | Number}
+   * @returns {String|Number}
    */
   getCurrentPageNo ()
   {
-    return this.page.getPageNo();
+    return this.page.getCurrentPageNo();
   }
 
   /**
    * update pagination object's page number
    *
    * @param {String|Number} pageNo - page number
-   * @returns void
+   * @returns {void}
    */
   updatePageNo(pageNo)
   {    
-    this.page.setPageNo(pageNo);
+    this.page.setCurrentPageNo(pageNo);
   }
 
   /**
    * update the whole pagination object
-   * creates a new instance of Page for this.page property
-   * is not set
    *
    * @param {object} page pagination object
-   * @return void
+   * @return {void}
    */
   _setPage(page)
   {
@@ -91,7 +89,7 @@ class vuexPaginationWrapper extends vuexStateWrapper {
   setData(data, page)
   {
     this._setPage(page);
-    this.data[this.page.getPageNo()] = data;
+    this.data[this.page.getCurrentPageNo()] = data;
     return this;
   }  
 
