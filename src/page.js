@@ -17,42 +17,40 @@ class Page {
    * @returns self
    */
   constructor({ total, current, pages }) {
-    //if (total && current && pages) {
       this.setTotal(total)
       this.setPagesCount(pages)
       this.setCurrentPageNo(current)
-    //}
   }
 
-  //   /**
-  //    * setter
-  //    *
-  //    * @param {string | number} currentPageNo
-  //    * @returns {void} void
-  //    */
-  //   set current(currentPageNo) {
-  //     this.setCurrentPageNo(currentPageNo)
-  //   }
+    /**
+     * setter
+     *
+     * @param {string | number} currentPageNo
+     * @returns {void} void
+     */
+    set current(currentPageNo) {
+      this.setCurrentPageNo(currentPageNo)
+    }
 
-  //   /**
-  //    * setter
-  //    *
-  //    * @param {string | number} pagesCount
-  //    * @returns {void} void
-  //    */
-  //   set pages(pagesCount) {
-  //     this.setPagesCount(pagesCount)
-  //   }
+    /**
+     * setter
+     *
+     * @param {string | number} pagesCount
+     * @returns {void} void
+     */
+    set pages(pagesCount) {
+      this.setPagesCount(pagesCount)
+    }
 
-  //   /**
-  //    * setter
-  //    *
-  //    * @param {string | number} total
-  //    * @returns {void} void
-  //    */
-  //   set total(total) {
-  //     this.setTotal(total)
-  //   }
+    /**
+     * setter
+     *
+     * @param {string | number} total
+     * @returns {void} void
+     */
+    set total(total) {
+      this.setTotal(total)
+    }
 
   /**
    * set page object
