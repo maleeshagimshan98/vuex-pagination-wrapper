@@ -4,7 +4,15 @@
   "description": "Wrapper object to be used for managing paged data easily in Vue.js",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.6.1",
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "@babel/register": "^7.21.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^29.5.0"
   },
   "author": "Maleesha Gimshan (https://github.com/maleeshagimshan98)",
   "license": "MIT",
