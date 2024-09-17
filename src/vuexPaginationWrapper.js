@@ -32,6 +32,10 @@ class vuexPaginationWrapper extends vuexStateWrapper {
    */
   _initialisePage(page)
   {
+    if (page instanceof Page) {
+      this.page = page
+      return
+    }
     this.page = new Page(page)
   }
 
