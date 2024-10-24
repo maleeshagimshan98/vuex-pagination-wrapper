@@ -96,10 +96,10 @@ class Page {
    */
   setTotal(total) {
     if (!total) {
-      throw new Error(`Error:Page - total number of pages cannot be ${total}`)
+      throw new Error(`Error:Page - 'total' cannot be ${total}`)
     }
     if (total <= 0) {
-      throw new Error("Error:Page - total number of results must be equal or above 1")
+      throw new Error("Error:Page - 'total' must be a positive integer")
     }
     this.total = total
     return this
@@ -122,14 +122,14 @@ class Page {
    * @throws {Error}
    */
   setCurrentPageNo(current) {
+    if (current <= 0) {
+      throw new Error("Error:Page - 'current' must be a positive integer")
+    }
     if (!this.pages) {
-      throw new Error(`Error:Page - this.pages is ${this.pages}. Could not set the current pageNo`)
+      throw new Error(`Error:Page - this.pages is ${this.pages}. Could not set the current page number`)
     }
     if ((this.pages) && (current > this.pages)) {
-      throw new Error("Error:Page - page number must be equal or below the pages count")
-    }
-    if ((this.pages) && (current <= 0)) {
-      throw new Error("Error:Page - page number must be equal or above 1")
+      throw new Error("Error:Page - 'current' must be equal or below the pages count")
     }
     this.current = current
     return this
@@ -156,11 +156,11 @@ class Page {
       throw new Error(`Error:Page - page count cannot be ${pagesCount}`)
     }
     if (pagesCount <= 0) {
-      throw new Error("Error:Page - pages count must be equal or above 1")
+      throw new Error("Error:Page - 'pagesCount' must be positive integer")
     }
     if (pagesCount < this.current) {
       throw new Error(
-        `Error:Page - total number of pages must be equal or higher than the current pageNo of ${this.current}`
+        `Error:Page - pagesCount must be equal or higher than the current page number - ${this.current}`
       )
     }
     this.pages = pagesCount
