@@ -64,7 +64,7 @@ describe("vuexPaginationWrapper Class", () => {
 
   test("should throw error if page number is invalid", () => {
     paginationWrapper = new vuexPaginationWrapper(null, { total: 10, current: 2, pages: 5 });
-    expect(() => paginationWrapper.updatePageNo(6)).toThrow("Error:Page - page number must be equal or below the pages count");
+    expect(() => paginationWrapper.updatePageNo(6)).toThrow("Error:Page - 'current' must be equal or below the pages count");
   });
 
   // 6. _setPage

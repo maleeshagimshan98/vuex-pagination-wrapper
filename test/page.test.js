@@ -23,11 +23,11 @@ describe("Page Class", () => {
   });
 
   test("should throw error if current page number exceeds the pages count", () => {
-    expect(() => new Page({total : 50, pages: 5, current: 6 })).toThrowError("Error:Page - page number must be equal or below the pages count");
+    expect(() => new Page({total : 50, pages: 5, current: 6 })).toThrowError("Error:Page - 'current' must be equal or below the pages count");
   });
 
   test("should throw error if current page number is less than or equal to 0", () => {
-    expect(() => new Page({total : 50, pages: 5, current: 0 })).toThrowError("Error:Page - page number must be equal or above 1");
+    expect(() => new Page({total : 50, pages: 5, current: 0 })).toThrowError("Error:Page - 'current' must be a positive integer");
   });
 
   // 4. setPagesCount Method
@@ -42,7 +42,7 @@ describe("Page Class", () => {
 
   test("should throw error if pages count is less than current page", () => {
     const page = new Page({total : 20, pages: 6, current: 6 });
-    expect(() => page.setPagesCount(3)).toThrowError("Error:Page - total number of pages must be equal or higher than the current pageNo of 6");
+    expect(() => page.setPagesCount(3)).toThrowError("Error:Page - pagesCount must be equal or higher than the current page number - 6");
   });
 
   // 5. Getters (getTotalCount, getCurrentPageNo, getPagesCount)
