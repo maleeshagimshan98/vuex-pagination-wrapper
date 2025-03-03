@@ -17,40 +17,40 @@ class Page {
    * @returns self
    */
   constructor({ total, current, pages }) {
-      this.setTotal(total)
-      this.setPagesCount(pages)
-      this.setCurrentPageNo(current)
+    this.setTotal(total)
+    this.setPagesCount(pages)
+    this.setCurrentPageNo(current)
   }
 
-    /**
-     * setter
-     *
-     * @param {string | number} currentPageNo
-     * @returns {void} void
-     */
-    set current(currentPageNo) {
-      this.setCurrentPageNo(currentPageNo)
-    }
+  /**
+   * setter
+   *
+   * @param {string | number} currentPageNo
+   * @returns {void} void
+   */
+  set current(currentPageNo) {
+    this.setCurrentPageNo(currentPageNo)
+  }
 
-    /**
-     * setter
-     *
-     * @param {string | number} pagesCount
-     * @returns {void} void
-     */
-    set pages(pagesCount) {
-      this.setPagesCount(pagesCount)
-    }
+  /**
+   * setter
+   *
+   * @param {string | number} pagesCount
+   * @returns {void} void
+   */
+  set pages(pagesCount) {
+    this.setPagesCount(pagesCount)
+  }
 
-    /**
-     * setter
-     *
-     * @param {string | number} total
-     * @returns {void} void
-     */
-    set total(total) {
-      this.setTotal(total)
-    }
+  /**
+   * setter
+   *
+   * @param {string | number} total
+   * @returns {void} void
+   */
+  set total(total) {
+    this.setTotal(total)
+  }
 
   /**
    * set page object
@@ -126,9 +126,11 @@ class Page {
       throw new Error("Error:Page - 'current' must be a positive integer")
     }
     if (!this.pages) {
-      throw new Error(`Error:Page - this.pages is ${this.pages}. Could not set the current page number`)
+      throw new Error(
+        `Error:Page - this.pages is ${this.pages}. Could not set the current page number`
+      )
     }
-    if ((this.pages) && (current > this.pages)) {
+    if (this.pages && current > this.pages) {
       throw new Error("Error:Page - 'current' must be equal or below the pages count")
     }
     this.current = current
