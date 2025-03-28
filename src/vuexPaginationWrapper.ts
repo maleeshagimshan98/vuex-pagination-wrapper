@@ -2,8 +2,8 @@
  * Copyright - 2021 - Maleesha Gimshan (github.com/maleeshagimshan98)
  */
 
-import { Page, PageData } from './page';
-import vuexStateWrapper from './vuexStateWrapper';
+import { Page } from './page';
+import type { PageData } from './page';
 
 /**
  * wraps state data objects with page data
@@ -30,12 +30,9 @@ class vuexPaginationWrapper {
    * @param {PageData} page pagination data
    * @returns self
    */
-  constructor(
-    data?: Record<number, unknown>,
-    page: PageData = { total: 1, pages: 1, current: 1 },
-  ) {
+  constructor(data?: Record<number, unknown>, page: PageData = { total: 1, pages: 1, current: 1 }) {
     this._initialisePage(page);
-    this._setData(data?? {});
+    this._setData(data ?? {});
     return this;
   }
 
@@ -141,10 +138,7 @@ class vuexPaginationWrapper {
    * @param {PageData} page page number
    * @returns self
    */
-  setData(
-    data: Record<string, unknown>,
-    page: PageData,
-  ): vuexPaginationWrapper {
+  setData(data: Record<string, unknown>, page: PageData): vuexPaginationWrapper {
     this._setPage(page);
     this._setData(data);
     return this;
@@ -186,9 +180,7 @@ class vuexPaginationWrapper {
   getData(pageNo: string | number): unknown {
     pageNo = this._convertToNumber(pageNo);
     if (pageNo > this._page.getPagesCount()) {
-      throw new Error(
-        `Invalid page number, Page number must be equal or lower than ${this._page.getPagesCount()}`,
-      );
+      throw new Error(`Invalid page number, Page number must be equal or lower than ${this._page.getPagesCount()}`);
     }
     return this._data[pageNo];
   }
