@@ -9,12 +9,12 @@
     "lint": "eslint src --ext .js,.ts",
     "lint:fix": "eslint src --ext .js,.ts --fix",
     "format": "prettier --write .",
-    "build": "tsc"
+    "build": "npm run format && npm run lint && tsc"
   },
   "files": [
     "dist",
     "README.md"
-  ],  
+  ],
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.21.5",
