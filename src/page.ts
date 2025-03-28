@@ -101,7 +101,7 @@ class Page {
    * @throws {Error}
    */
   setTotal(total: number): Page {
-    if (!total) {
+    if (!total && typeof total !== "number") {
       throw new Error(`Error:Page - 'total' cannot be ${total}`);
     }
     if (total <= 0) {
