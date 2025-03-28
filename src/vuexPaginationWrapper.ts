@@ -2,8 +2,8 @@
  * Copyright - 2021 - Maleesha Gimshan (github.com/maleeshagimshan98)
  */
 
-import { Page, PageData } from './page.js';
-import vuexStateWrapper from './vuexStateWrapper.js';
+import { Page, PageData } from './page';
+import vuexStateWrapper from './vuexStateWrapper';
 
 /**
  * wraps state data objects with page data
@@ -27,15 +27,15 @@ class vuexPaginationWrapper {
    * constructor
    *
    * @param {Record<number, unknown>} data any object containing data for yur application
-   * @param {object} page pagination data
+   * @param {PageData} page pagination data
    * @returns self
    */
   constructor(
     data?: Record<number, unknown>,
     page: PageData = { total: 1, pages: 1, current: 1 },
   ) {
-    this._data = data ?? {};
     this._initialisePage(page);
+    this._setData(data?? {});
     return this;
   }
 
@@ -120,6 +120,21 @@ class vuexPaginationWrapper {
   }
 
   /**
+   *
+   *
+   * @param pageNo
+   * @param data
+   * @returns {void}
+   * @throws {Error}
+   */
+  private _setData(data: Record<string, unknown>): void {
+    if (!this._page) {
+      throw new Error('Page object not initialized');
+    }
+    this._data[this._page.getCurrentPageNo()] = data;
+  }
+
+  /**
    * set data for the current page
    *
    * @param {Record<string, unknown>} data data
@@ -131,7 +146,7 @@ class vuexPaginationWrapper {
     page: PageData,
   ): vuexPaginationWrapper {
     this._setPage(page);
-    this._data[this._page.getCurrentPageNo()] = data;
+    this._setData(data);
     return this;
   }
 
@@ -179,4 +194,4 @@ class vuexPaginationWrapper {
   }
 }
 
-module.exports = vuexPaginationWrapper;
+export { vuexPaginationWrapper };
