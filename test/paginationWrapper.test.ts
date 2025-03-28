@@ -1,5 +1,4 @@
 import { vuexPaginationWrapper } from '../src/vuexPaginationWrapper';
-import { Page } from '../src/page';
 
 describe('vuexPaginationWrapper Class', () => {
   let paginationWrapper: vuexPaginationWrapper;
