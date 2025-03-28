@@ -1,10 +1,12 @@
 # vuex-pagination-wrapper
+
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue)
 
 Wrapper object for managing paged data easily in Vuex Store.
 
 ## About
+
 Storing and retrieving a lot of paged data may be a daunting task for many, especially when you have different kinds of paged data in your application and need to update the pages and page numbers efficiently.
 
 This package helps you store and retrieve paged data in a Vuex store by providing an easy-to-use API.

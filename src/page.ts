@@ -101,7 +101,7 @@ class Page {
    * @throws {Error}
    */
   setTotal(total: number): Page {
-    if (!total && typeof total !== "number") {
+    if (!total && typeof total !== 'number') {
       throw new Error(`Error:Page - 'total' cannot be ${total}`);
     }
     if (total <= 0) {
@@ -132,14 +132,10 @@ class Page {
       throw new Error("Error:Page - 'current' must be a positive integer");
     }
     if (!this._pages) {
-      throw new Error(
-        `Error:Page - this.pages is ${this._pages}. Could not set the current page number`,
-      );
+      throw new Error(`Error:Page - this.pages is ${this._pages}. Could not set the current page number`);
     }
     if (this._pages && current > this._pages) {
-      throw new Error(
-        "Error:Page - 'current' must be equal or below the pages count",
-      );
+      throw new Error("Error:Page - 'current' must be equal or below the pages count");
     }
     this._current = current;
     return this;
