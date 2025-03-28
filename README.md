@@ -1,141 +1,144 @@
 # vuex-pagination-wrapper
-Wrapper object for managing paged data easily in Vuex Store
+
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue)
+
+Wrapper object for managing paged data easily in Vuex Store.
 
 ## About
-Storing and retriving lot of paged data may be a daunting task for many.
-Especially in the case you have different kinds of paged data in your appliaction, update the pages, page numbers efficiently.
 
-This package helps you to store and retrieve paged data in a vuex store by providing an easy to use api for you.
+Storing and retrieving a lot of paged data may be a daunting task for many, especially when you have different kinds of paged data in your application and need to update the pages and page numbers efficiently.
+
+This package helps you store and retrieve paged data in a Vuex store by providing an easy-to-use API.
 
 ## Installation
 
-Install the package with npm
+Install the package with npm:
 
-- `npm install @maleeshagimshan98/vuex-pagination-wrapper `
+```bash
+npm install @maleeshagimshan98/vuex-pagination-wrapper
+```
 
 ## Getting Started
 
-Using this module is simple. Import the package, create a new instance of `stateDataWrapperPaginated` and set data using `setData()` method.
+Using this module is simple. Import the package, create a new instance of `vuexPaginationWrapper`, and set data using the `setData()` method.
 
 **Example**
 
-````
-const {vuexPaginationWrapper} = require('vuex-pagination-wrapper');
+```javascript
+const { vuexPaginationWrapper } = require('vuex-pagination-wrapper');
 
-//... Vuex store module
+// Vuex store module
 module.exports = {
-  state : () => ({
-    foo : new vuexPaginationWrapper(),
+  state: () => ({
+    foo: new vuexPaginationWrapper(),
   }),
-  
-  mutations : {
-    setFoo (state,data) {
-      state.foo.setData(data.foo, data.page);        
+
+  mutations: {
+    setFoo(state, data) {
+      state.foo.setData(data.foo, data.page);
     },
   },
 
-  actions : {
-    async getFoo ({state,commit,dispatch}) {
-      let foo_data = await some_api_call()
-      commit('setFoo',foo_data)
-
-    }
+  actions: {
+    async getFoo({ state, commit }) {
+      let foo_data = await some_api_call();
+      commit('setFoo', foo_data);
+    },
   },
-}
-````
+};
+```
 
 ## Methods
 
+### `setData(data: Record<string, unknown>, page: PageData): void`
 
-- **`setData(data,page)`**
+Use this method to store data obtained from the server into the Vuex store. This method replaces the entire page object with the provided `page` parameter.
 
-Use this method to store data obtained from server into vuex store. This method replace the entire page object with the page parameter
+- **Parameters**:
+  - `data` - `Record<string, unknown>` - Any object or array of objects containing paginated data.
+  - `page` - `PageData` - Pagination data object that must include the following properties:
+    - `total` - `number` - Total number of results.
+    - `current` - `number` - Current page number.
+    - `pages` - `number` - Total number of pages.
+- **Returns**: `void`
 
-Pass the pagination object with updated page details (no of results, page number and pages count)
+Example:
 
-  - data - any object/ Array of objects with paginated data.
-  - page - pagination data object must include the following properties.
-  - *returns* - void
-
-
-````
-//... Pagination object
+```javascript
+// Pagination object
 {
-  total : 10, (total number of results)
-  current : 1, (current page number)
-  pages : 2  (number of pages)
+  total: 10, // Total number of results
+  current: 1, // Current page number
+  pages: 2, // Number of pages
 }
-````
+```
 
-- **getData(pageNo)**
+### `getData(pageNo: string | number): unknown`
 
-Get data of particular page number.
+Retrieve data for a specific page number.
 
-  - pageNo - Number -  page number of the data you want to get
-  - *returns* - data object/array of objects you stored for the particular page number
+- **Parameters**:
+  - `pageNo` - `string | number` - The page number of the data you want to retrieve.
+- **Returns**: `unknown` - The data object or array of objects stored for the specified page number.
 
-- **checkDataExists(page = null)**
+### `checkDataExists(page: string | number = null): boolean`
 
-Check if data exists for a given page number
+Check if data exists for a given page number.
 
-  - page - Number - check if there is data stored for the given page number
-  - *returns* - Boolean if data exists, return true
+- **Parameters**:
+  - `page` - `string | number` - The page number to check for data existence. Defaults to `null`.
+- **Returns**: `boolean` - Returns `true` if data exists for the given page number, otherwise `false`.
 
-- **updatePageNo(pageNo)**
+### `updatePageNo(pageNo: number): void`
 
-Update the current page number - use this when user surf through pages
+Update the current page number. Use this when the user navigates through pages.
 
-- pageNo - Number - which you want to be the current page number
-- *returns* - void
+- **Parameters**:
+  - `pageNo` - `number` - The page number to set as the current page.
+- **Returns**: `void`
 
-- **getCurrentPageNo()**
+### `getCurrentPageNo(): number`
 
-  - *returns* - String|Number current page number
+Retrieve the current page number.
 
-- **getPageDataObject()**
+- **Returns**: `number` - The current page number.
 
-  - *returns* - pagination data in a plain javascript object
+### `getPageDataObject(): PageData`
 
-  ````
-  //... plain object with following properties
+Retrieve the pagination data as a plain JavaScript object.
+
+- **Returns**: `PageData` - An object with the following properties:
+  ```javascript
   {
-    total : 10, (total number of results)
-    current : 1, (current page number)
-    pages : 2  (number of pages)
+    total: 10, // Total number of results
+    current: 1, // Current page number
+    pages: 2, // Number of pages
   }
+  ```
 
-  ````
+### `reset(): void`
 
+Reset the stored data and pagination object to their initial states.
 
-
+- **Returns**: `void`
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
-3. Commit your Changes (git commit -m 'Add some AmazingFeature')
-4. Push to the Branch (git push origin feature/AmazingFeature)
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## License
 
-## Licence
-Distributed under the MIT License
+Distributed under the MIT License.
 
 ## Contact
 
-- email - (maleeshagimshan74@gmail.com)
-
-
-
-
-
-
-
-
-
-
-
+- Email: [maleesha.gimshan.98@outlook.com](mailto:maleesha.gimshan.98@outlook.com)

@@ -1,19 +1,13 @@
 module.exports = {
-  moduleFileExtensions: [
-    'js',
-    'jsx',
-    'json',
-    'vue'
-  ],
+  moduleFileExtensions: ['js', 'ts', 'jsx', 'tsx', 'json', 'vue'],
   transform: {
-    '^.+\\.jsx?$': 'babel-jest'
+    '^.+\\.tsx?$': 'ts-jest', // Use ts-jest for TypeScript files
+    '^.+\\.jsx?$': 'babel-jest', // Use babel-jest for JavaScript files
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/node_modules/$1'
+    '^@/(.*)$': '<rootDir>/node_modules/$1',
   },
-  testMatch: [
-    '<rootDir>/test/**/*.test.js'
-  ],
-  setupFilesAfterEnv: ['<rootDir>/test/setup.js']
+  testMatch: ['<rootDir>/test/**/*.test.(ts|js)'],
+  setupFilesAfterEnv: ['<rootDir>/test/setup.js'],
   // Add other Jest configuration options as needed
 };

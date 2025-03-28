@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    /* 💡 Output & Language Features */
+    "target": "ESNext" /* Use the latest ECMAScript features */,
+    "module": "CommonJS" /* Use CommonJS modules (for Node.js) */,
+    "moduleResolution": "node" /* Use Node.js module resolution */,
+    "rootDir": "src" /* Set 'src' as the root directory */,
+    "outDir": "dist" /* Output compiled files to 'dist' */,
+    "allowJs": false /* Don't allow JavaScript files in the project */,
+    "resolveJsonModule": true /* Allow importing JSON files */,
+    "declaration": true /* Generate .d.ts files for types */,
+
+    /* 💡 Strict Type Checking */
+    "strict": true /* Enable all strict type checking */,
+    "noImplicitAny": true /* Disallow implicit 'any' types */,
+    "strictNullChecks": true /* Check for 'null' and 'undefined' */,
+    "strictFunctionTypes": true /* Check function type assignments */,
+    "strictBindCallApply": true /* Check 'bind', 'call', 'apply' methods */,
+    "noImplicitThis": true /* Disallow 'this' being implicitly 'any' */,
+    "useUnknownInCatchVariables": true /* Use 'unknown' instead of 'any' in catch */,
+    "noImplicitReturns": true /* Ensure functions always return a value */,
+    "noFallthroughCasesInSwitch": true /* Disallow fallthrough in switch statements */,
+
+    /* 💡 Module Interop */
+    "esModuleInterop": true /* Improve compatibility with CommonJS */,
+    "allowSyntheticDefaultImports": true /* Allow default imports from non-ES modules */,
+    "forceConsistentCasingInFileNames": true /* Enforce case-sensitive imports */,
+
+    /* 💡 Linting & Formatting */
+    "skipLibCheck": true /* Skip type checking for dependencies */,
+    "noUnusedLocals": true /* Warn about unused local variables */,
+    "noUnusedParameters": true /* Warn about unused function parameters */,
+    "exactOptionalPropertyTypes": true /* Enforce strict optional properties */,
+    "noUncheckedIndexedAccess": true /* Ensure array/indexed types include 'undefined' */,
+
+    /* 💡 Compilation Settings */
+    "noEmit": false /* Don't output compiled files (useful for linting) */
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "build", "test"]
+}
