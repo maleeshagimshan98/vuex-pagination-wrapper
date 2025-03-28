@@ -4,7 +4,10 @@
   "description": "Wrapper object to be used for managing paged data easily in Vue.js",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint src --ext .js,.ts",
+    "lint:fix": "eslint src --ext .js,.ts --fix",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
