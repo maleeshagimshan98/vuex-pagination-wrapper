@@ -1,5 +1,5 @@
 import { Page, PageData } from './page';
-import vuexStateWrapper from './vuexStateWrapper';
-import { vuexPaginationWrapper } from './vuexPaginationWrapper';
+import InfiniteState from './InfiniteState';
+import { InfinitePaginatedState } from './InfinitePaginatedState';
 
-export { Page, PageData, vuexStateWrapper, vuexPaginationWrapper };
+export { Page, PageData, InfiniteState as vuexStateWrapper, InfinitePaginatedState };

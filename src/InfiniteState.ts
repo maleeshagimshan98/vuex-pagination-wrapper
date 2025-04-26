@@ -5,7 +5,7 @@
 /**
  * wraps state data objects
  */
-class vuexStateWrapper {
+class InfiniteState {
   /**
    * data object
    *
@@ -28,9 +28,9 @@ class vuexStateWrapper {
    * set data
    *
    * @param {Record<string, unknown>} data data
-   * @returns {vuexStateWrapper} self
+   * @returns {InfiniteState} self
    */
-  setData(data: Record<string, unknown>): vuexStateWrapper {
+  setData(data: Record<string, unknown>): InfiniteState {
     this.data = data;
     return this;
   }
@@ -56,4 +56,4 @@ class vuexStateWrapper {
   }
 }
 
-export default vuexStateWrapper;
+export default InfiniteState;
