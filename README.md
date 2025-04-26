@@ -1,37 +1,45 @@
-# vuex-pagination-wrapper
+# infinite-paginated-state
 
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue)
 
-Wrapper object for managing paged data easily in Vuex Store.
+Wrapper object for managing paged data easily.
 
 ## About
 
-Storing and retrieving a lot of paged data may be a daunting task for many, especially when you have different kinds of paged data in your application and need to update the pages and page numbers efficiently.
+Storing and retrieving paged data can get messy—especially when dealing with multiple datasets, dynamic page updates, or complex state logic.
 
-This package helps you store and retrieve paged data in a Vuex store by providing an easy-to-use API.
+Infinite-Paginated-State simplifies this by providing a lightweight, framework-agnostic API to:
+
+📦 Store paged data (by page numbers, keys, or IDs).
+
+🔍 Retrieve/filter pages efficiently.
+
+🔄 Sync with UI (React, Vue, Svelte, etc.) or state managers (Redux, Pinia, etc.).
+
+No more manual array slicing or nested state juggling. Just structured paged data, made easy.
 
 ## Installation
 
 Install the package with npm:
 
 ```bash
-npm install @maleeshagimshan98/vuex-pagination-wrapper
+npm install infinite-paginated-state
 ```
 
 ## Getting Started
 
-Using this module is simple. Import the package, create a new instance of `vuexPaginationWrapper`, and set data using the `setData()` method.
+Using this module is simple. Import the package, create a new instance of `InfinitePaginatedState`, and set data using the `setData()` method.
 
 **Example**
 
 ```javascript
-const { vuexPaginationWrapper } = require('vuex-pagination-wrapper');
+const { InfinitePaginatedState } = require('infinite-paginated-state');
 
 // Vuex store module
 module.exports = {
   state: () => ({
-    foo: new vuexPaginationWrapper(),
+    foo: new InfinitePaginatedState(),
   }),
 
   mutations: {

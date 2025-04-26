@@ -1,11 +1,11 @@
-import { vuexPaginationWrapper } from '../src/vuexPaginationWrapper';
+import { InfinitePaginatedState } from '../src/InfinitePaginatedState';
 
-describe('vuexPaginationWrapper Class', () => {
-  let paginationWrapper: vuexPaginationWrapper;
+describe('InfinitePaginatedState Class', () => {
+  let paginationWrapper: InfinitePaginatedState;
 
   // 1. Constructor
   test('should initialize with default values', () => {
-    paginationWrapper = new vuexPaginationWrapper();
+    paginationWrapper = new InfinitePaginatedState();
     expect(paginationWrapper.getPageDataObject()).toEqual({
       total: 1,
       current: 1,
@@ -16,14 +16,14 @@ describe('vuexPaginationWrapper Class', () => {
   test('should initialize with provided data and page', () => {
     const data = { page1: 'data' };
     const page = { total: 10, current: 2, pages: 5 };
-    paginationWrapper = new vuexPaginationWrapper(data, page);
+    paginationWrapper = new InfinitePaginatedState(data, page);
     expect(paginationWrapper.getData(2)).toEqual(data);
     expect(paginationWrapper.getPageDataObject()).toEqual(page);
   });
 
   // 2. _initialisePage
   test('should initialize the Page object correctly', () => {
-    paginationWrapper = new vuexPaginationWrapper(undefined, {
+    paginationWrapper = new InfinitePaginatedState(undefined, {
       total: 20,
       current: 5,
       pages: 10,
@@ -36,7 +36,7 @@ describe('vuexPaginationWrapper Class', () => {
   });
 
   test('should create Page with default values if no page data is provided', () => {
-    paginationWrapper = new vuexPaginationWrapper();
+    paginationWrapper = new InfinitePaginatedState();
     expect(paginationWrapper.getPageDataObject()).toEqual({
       total: 1,
       current: 1,
@@ -47,12 +47,12 @@ describe('vuexPaginationWrapper Class', () => {
   // 3. getPageDataObject
   test('should return correct pagination data', () => {
     const page = { total: 10, current: 3, pages: 5 };
-    paginationWrapper = new vuexPaginationWrapper(undefined, page);
+    paginationWrapper = new InfinitePaginatedState(undefined, page);
     expect(paginationWrapper.getPageDataObject()).toEqual(page);
   });
 
   test('should return default page data when not set', () => {
-    paginationWrapper = new vuexPaginationWrapper();
+    paginationWrapper = new InfinitePaginatedState();
     expect(paginationWrapper.getPageDataObject()).toEqual({
       total: 1,
       current: 1,
@@ -63,18 +63,18 @@ describe('vuexPaginationWrapper Class', () => {
   // 4. getCurrentPageNo
   test('should return the correct current page number', () => {
     const page = { total: 10, current: 2, pages: 5 };
-    paginationWrapper = new vuexPaginationWrapper(undefined, page);
+    paginationWrapper = new InfinitePaginatedState(undefined, page);
     expect(paginationWrapper.getCurrentPageNo()).toBe(2);
   });
 
   test('should return default page number if Page object is not initialized', () => {
-    paginationWrapper = new vuexPaginationWrapper();
+    paginationWrapper = new InfinitePaginatedState();
     expect(paginationWrapper.getCurrentPageNo()).toBe(1); // It defaults to 1 as per the Page class
   });
 
   // 5. updatePageNo
   test('should update the current page number', () => {
-    paginationWrapper = new vuexPaginationWrapper(undefined, {
+    paginationWrapper = new InfinitePaginatedState(undefined, {
       total: 10,
       current: 2,
       pages: 5,
@@ -84,7 +84,7 @@ describe('vuexPaginationWrapper Class', () => {
   });
 
   test('should throw error if page number is invalid', () => {
-    paginationWrapper = new vuexPaginationWrapper(undefined, {
+    paginationWrapper = new InfinitePaginatedState(undefined, {
       total: 10,
       current: 2,
       pages: 5,
@@ -97,14 +97,14 @@ describe('vuexPaginationWrapper Class', () => {
   // 7. setData
   test('should set data for the current page', () => {
     const data = { item1: 'value1' };
-    paginationWrapper = new vuexPaginationWrapper();
+    paginationWrapper = new InfinitePaginatedState();
     paginationWrapper.setData(data, { total: 10, current: 2, pages: 5 });
     expect(paginationWrapper.getData(2)).toEqual(data);
   });
 
   test('should return self after setting data', () => {
     const data = { item1: 'value1' };
-    paginationWrapper = new vuexPaginationWrapper();
+    paginationWrapper = new InfinitePaginatedState();
     const result = paginationWrapper.setData(data, {
       total: 10,
       current: 2,
@@ -116,7 +116,7 @@ describe('vuexPaginationWrapper Class', () => {
   // 8. checkDataExists
   test('should return true if data exists for the specified page', () => {
     const data = { 2: { item1: 'value1' } };
-    paginationWrapper = new vuexPaginationWrapper(data, {
+    paginationWrapper = new InfinitePaginatedState(data, {
       total: 10,
       current: 2,
       pages: 5,
@@ -125,14 +125,14 @@ describe('vuexPaginationWrapper Class', () => {
   });
 
   test('should return false if data does not exist for the specified page', () => {
-    paginationWrapper = new vuexPaginationWrapper();
+    paginationWrapper = new InfinitePaginatedState();
     expect(paginationWrapper.checkDataExists(2)).toBe(false);
   });
 
   // 9. getData
   test('should return the data for the specified page number', () => {
     const data = { item1: 'value1' };
-    paginationWrapper = new vuexPaginationWrapper(data, {
+    paginationWrapper = new InfinitePaginatedState(data, {
       total: 10,
       current: 1,
       pages: 5,
@@ -141,7 +141,7 @@ describe('vuexPaginationWrapper Class', () => {
   });
 
   test('should throw error if page number exceeds total pages', () => {
-    paginationWrapper = new vuexPaginationWrapper(undefined, {
+    paginationWrapper = new InfinitePaginatedState(undefined, {
       total: 10,
       current: 1,
       pages: 5,

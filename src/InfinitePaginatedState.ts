@@ -8,7 +8,7 @@ import type { PageData } from './page';
 /**
  * wraps state data objects with page data
  */
-class vuexPaginationWrapper {
+class InfinitePaginatedState {
   /**
    * page object
    *
@@ -138,7 +138,7 @@ class vuexPaginationWrapper {
    * @param {PageData} page page number
    * @returns self
    */
-  setData(data: Record<string, unknown>, page: PageData): vuexPaginationWrapper {
+  setData(data: Record<string, unknown>, page: PageData): InfinitePaginatedState {
     this._setPage(page);
     this._setData(data);
     return this;
@@ -186,4 +186,4 @@ class vuexPaginationWrapper {
   }
 }
 
-export { vuexPaginationWrapper };
+export { InfinitePaginatedState };
